@@ -86,6 +86,7 @@ class Solution {
         Node parent = null;
         // search
         boolean isLeft = true;
+        // define the location of the target
         while (current.value != deleteNode) {
             parent = current;
             if (deleteNode < current.value) {
@@ -132,16 +133,51 @@ class Solution {
             }
         }
         // both children
-
+        // get the replacement
+        else {
+            Node replaceNode = findMinNode(current);
+            if (current == root) {
+                root = replaceNode;
+            } else if (isLeft) {
+                parent.left = replaceNode;
+            } else {
+                parent.right = replaceNode;
+            }
+            // to connect the tree
+            replaceNode.left = current.left;
+        }
         return true;
+    }
+    public Node findMinNode(Node _node) {
+        Node replaceNode = _node;
+        System.out.println("Current is: " + replaceNode);
+        Node rightNode = _node.right;
+        Node finalReplace = _node;
+        System.out.println("Current's right is: " + rightNode);
+        while (rightNode != null) {
+            // get the smallest
+            replaceNode = finalReplace;
+            finalReplace = rightNode;
+            rightNode = rightNode.left;
+            System.out.println(finalReplace);
+        }
+        if (_node.right != finalReplace) {
+            replaceNode.left = finalReplace.right;
+            finalReplace.right = _node.right; 
+        }
+        //finalReplace.right = replaceNode.right;
+        System.out.println("Smallest: " + finalReplace);
+        return finalReplace;
     }
 
     public static void main(String[] args) {
         Solution tree = new Solution();
         tree.addTree(50, "50");
-        tree.addTree(25, "25");
+        tree.addTree(25, "My Target Delete 25");
         tree.addTree(15, "15");
         tree.addTree(30, "The Target Node");
+        // add for testing delete
+        tree.addTree(26, "26");
         tree.addTree(75, "75");
         tree.addTree(85, "85");
         tree.inorderTraverse(tree.root);
@@ -156,8 +192,12 @@ class Solution {
         // System.out.println("=========Delete Node= 85==========");
         // boolean isDeleted = tree.deleteTreeNode(85);
         // System.out.println("Delete Succeses?: " + isDeleted);
-        System.out.println("============Delete Node 75 to test One Child");
-        boolean isDeleted = tree.deleteTreeNode(75);
+        System.out.println("Test pas=======================");
+        // System.out.println("============Delete Node 75 to test One Child");
+        // boolean isDeleted = tree.deleteTreeNode(75);
+        // System.out.println("Deleted Success?: " + isDeleted);
+        System.out.println("============Delete Two child ===============");
+        boolean isDeleted = tree.deleteTreeNode(25);
         System.out.println("Deleted Success?: " + isDeleted);
         tree.inorderTraverse(tree.root);
     }
