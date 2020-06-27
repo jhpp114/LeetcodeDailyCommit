@@ -30,5 +30,6 @@ class Solution {
         int target = 6;
         int[] sol1 = sol.twoSum(nums, target);
         sol.printArray(sol1);
+        System.out.println(-1%10);
     }
 }
