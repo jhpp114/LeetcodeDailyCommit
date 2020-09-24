@@ -8,6 +8,13 @@
             "type": "java",
             "name": "CodeLens (Launch) - Solution",
             "request": "launch",
+            "mainClass": "day30.MinumNumberStepsAnagram.Solution",
+            "projectName": "LeetcodeDailyCommit_989ad0ed"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Solution",
+            "request": "launch",
             "mainClass": "day30.LetterTilePossibilities.Solution",
             "projectName": "LeetcodeDailyCommit_989ad0ed"
         },
