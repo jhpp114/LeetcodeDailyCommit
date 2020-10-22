@@ -10,8 +10,7 @@ class Solution {
             myMap.put(nums[i], 1);
         }
         return 0;
-    }
-    public static void main(String[] args) {
+    }     public static void main(String[] args) {
         Solution sol = new Solution();
         int nums1[] = {1,3,4,2,2};
         int sol1 = sol.findDuplicate(nums1);
